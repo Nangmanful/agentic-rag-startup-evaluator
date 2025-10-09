@@ -1,50 +1,10 @@
-# AI Startup Investment Evaluation Agent
-본 프로젝트는 인공지능 스타트업에 대한 투자 가능성을 자동으로 평가하는 에이전트를 설계하고 구현한 실습 프로젝트입니다.
-#### Class 1, Team 1
-##### Member:
-김재민, 김창규, 신민석, 이시언, 정광진
+# Agentic RAG Startup Evaluator — 경쟁사 비교 에이전트
+담당자: **정광진**
 
-## Overview
-
-- Objective : AI 스타트업의 기술력, 시장성, 리스크 등을 기준으로 투자 적합성 분석
-- Method : AI Agent + Agentic RAG 
-- Tools : 도구A, 도구B, 도구C
-
-## Features
-
-- PDF 자료 기반 정보 추출 (예: IR 자료, 기사 등)
-- 투자 기준별 판단 분류 (시장성, 팀, 기술력 등)
-- 종합 투자 요약 출력 (예: 투자 유망 / 보류 / 회피)
-
-## Tech Stack 
-
-| Category   | Details                      |
-|------------|------------------------------|
-| Framework  | LangGraph, LangChain, Python |
-| LLM        | GPT-4o-mini via OpenAI API   |
-| Retrieval  | FAISS, Chroma                |
-
-## Agents
- 
-- Agent A: Assesses technical competitiveness
-- Agent B: Evaluates market opportunity and team capability
-
-## Architecture
-(그래프 이미지)
-
-## Directory Structure
-├── data/                  # 스타트업 PDF 문서
-├── agents/                # 평가 기준별 Agent 모듈
-├── prompts/               # 프롬프트 템플릿
-├── outputs/               # 평가 결과 저장
-├── app.py                 # 실행 스크립트
-└── README.md
-
-## Contributors 
-- 김철수 : Prompt Engineering, Agent Design 
-- 최영희 : PDF Parsing, Retrieval Agent 
-- 김재민: 
-- 김창규: 
-- 신민석: 
-- 이시언: 
-- 정광진: 
+## 역할 (4번: 경쟁사 비교 에이전트)
+- 의료 AI 스타트업의 **경쟁사 정보를 웹 검색**하여 **비교 분석**
+- **TavilySearch 기반 실시간 웹 검색**으로 경쟁사 발굴 및 상세 정보 수집
+- 기술 요약 에이전트의 **output을 입력**으로 받아 경쟁 우위 분석
+- **템플릿(agent → retrieve → grade → search_more → analyze → evaluate)** 흐름 유지
+- 6개 차원(기술 차별성 30%, 시장 진입 장벽 25%, 자금력 20%, 파트너십 15%, 인증 5%, 브랜드 5%)에서 평가
+- 최종 **5점 척도 점수** 출력 (1=매우 약함 ~ 5=탁월함)
