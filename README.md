@@ -42,8 +42,7 @@
 
 본 에이전트 시스템은 **LangGraph**를 사용하여 아래와 같은 상태 기반의 워크플로우로 설계되었습니다. `투자 판단` 에이전트의 결과에 따라 흐름이 동적으로 분기되는 **조건부 엣지(Conditional Edge)**가 핵심입니다.
 
-```
-mermaid
+```mermaid
 graph TD
     A[START] --> B[스타트업 탐색]
     B --> C[기술 요약]
@@ -53,7 +52,7 @@ graph TD
     F -->|Invest| G[보고서 생성]
     F -->|Hold| B
     G --> H[END]
-
+```
 
 ## Directory Structure
 ├── data/                  # 스타트업 PDF 문서
