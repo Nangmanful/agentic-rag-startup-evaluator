@@ -1,0 +1,459 @@
+Metadata-Version: 2.4
+Name: langchain-teddynote
+Version: 0.5.1
+Summary: Helper and utility functions for langchain
+Project-URL: Homepage, https://github.com/teddylee777/langchain-teddynote
+Project-URL: Repository, https://github.com/teddylee777/langchain-teddynote
+Project-URL: Issues, https://github.com/teddylee777/langchain-teddynote/issues
+Author-email: Teddy Lee <teddylee777@gmail.com>
+License:                                  Apache License
+                                   Version 2.0, January 2004
+                                http://www.apache.org/licenses/
+        
+           TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+        
+           1. Definitions.
+        
+              "License" shall mean the terms and conditions for use, reproduction,
+              and distribution as defined by Sections 1 through 9 of this document.
+        
+              "Licensor" shall mean the copyright owner or entity authorized by
+              the copyright owner that is granting the License.
+        
+              "Legal Entity" shall mean the union of the acting entity and all
+              other entities that control, are controlled by, or are under common
+              control with that entity. For the purposes of this definition,
+              "control" means (i) the power, direct or indirect, to cause the
+              direction or management of such entity, whether by contract or
+              otherwise, or (ii) ownership of fifty percent (50%) or more of the
+              outstanding shares, or (iii) beneficial ownership of such entity.
+        
+              "You" (or "Your") shall mean an individual or Legal Entity
+              exercising permissions granted by this License.
+        
+              "Source" form shall mean the preferred form for making modifications,
+              including but not limited to software source code, documentation
+              source, and configuration files.
+        
+              "Object" form shall mean any form resulting from mechanical
+              transformation or translation of a Source form, including but
+              not limited to compiled object code, generated documentation,
+              and conversions to other media types.
+        
+              "Work" shall mean the work of authorship, whether in Source or
+              Object form, made available under the License, as indicated by a
+              copyright notice that is included in or attached to the work
+              (an example is provided in the Appendix below).
+        
+              "Derivative Works" shall mean any work, whether in Source or Object
+              form, that is based on (or derived from) the Work and for which the
+              editorial revisions, annotations, elaborations, or other modifications
+              represent, as a whole, an original work of authorship. For the purposes
+              of this License, Derivative Works shall not include works that remain
+              separable from, or merely link (or bind by name) to the interfaces of,
+              the Work and Derivative Works thereof.
+        
+              "Contribution" shall mean any work of authorship, including
+              the original version of the Work and any modifications or additions
+              to that Work or Derivative Works thereof, that is intentionally
+              submitted to Licensor for inclusion in the Work by the copyright owner
+              or by an individual or Legal Entity authorized to submit on behalf of
+              the copyright owner. For the purposes of this definition, "submitted"
+              means any form of electronic, verbal, or written communication sent
+              to the Licensor or its representatives, including but not limited to
+              communication on electronic mailing lists, source code control systems,
+              and issue tracking systems that are managed by, or on behalf of, the
+              Licensor for the purpose of discussing and improving the Work, but
+              excluding communication that is conspicuously marked or otherwise
+              designated in writing by the copyright owner as "Not a Contribution."
+        
+              "Contributor" shall mean Licensor and any individual or Legal Entity
+              on behalf of whom a Contribution has been received by Licensor and
+              subsequently incorporated within the Work.
+        
+           2. Grant of Copyright License. Subject to the terms and conditions of
+              this License, each Contributor hereby grants to You a perpetual,
+              worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+              copyright license to reproduce, prepare Derivative Works of,
+              publicly display, publicly perform, sublicense, and distribute the
+              Work and such Derivative Works in Source or Object form.
+        
+           3. Grant of Patent License. Subject to the terms and conditions of
+              this License, each Contributor hereby grants to You a perpetual,
+              worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+              (except as stated in this section) patent license to make, have made,
+              use, offer to sell, sell, import, and otherwise transfer the Work,
+              where such license applies only to those patent claims licensable
+              by such Contributor that are necessarily infringed by their
+              Contribution(s) alone or by combination of their Contribution(s)
+              with the Work to which such Contribution(s) was submitted. If You
+              institute patent litigation against any entity (including a
+              cross-claim or counterclaim in a lawsuit) alleging that the Work
+              or a Contribution incorporated within the Work constitutes direct
+              or contributory patent infringement, then any patent licenses
+              granted to You under this License for that Work shall terminate
+              as of the date such litigation is filed.
+        
+           4. Redistribution. You may reproduce and distribute copies of the
+              Work or Derivative Works thereof in any medium, with or without
+              modifications, and in Source or Object form, provided that You
+              meet the following conditions:
+        
+              (a) You must give any other recipients of the Work or
+                  Derivative Works a copy of this License; and
+        
+              (b) You must cause any modified files to carry prominent notices
+                  stating that You changed the files; and
+        
+              (c) You must retain, in the Source form of any Derivative Works
+                  that You distribute, all copyright, patent, trademark, and
+                  attribution notices from the Source form of the Work,
+                  excluding those notices that do not pertain to any part of
+                  the Derivative Works; and
+        
+              (d) If the Work includes a "NOTICE" text file as part of its
+                  distribution, then any Derivative Works that You distribute must
+                  include a readable copy of the attribution notices contained
+                  within such NOTICE file, excluding those notices that do not
+                  pertain to any part of the Derivative Works, in at least one
+                  of the following places: within a NOTICE text file distributed
+                  as part of the Derivative Works; within the Source form or
+                  documentation, if provided along with the Derivative Works; or,
+                  within a display generated by the Derivative Works, if and
+                  wherever such third-party notices normally appear. The contents
+                  of the NOTICE file are for informational purposes only and
+                  do not modify the License. You may add Your own attribution
+                  notices within Derivative Works that You distribute, alongside
+                  or as an addendum to the NOTICE text from the Work, provided
+                  that such additional attribution notices cannot be construed
+                  as modifying the License.
+        
+              You may add Your own copyright statement to Your modifications and
+              may provide additional or different license terms and conditions
+              for use, reproduction, or distribution of Your modifications, or
+              for any such Derivative Works as a whole, provided Your use,
+              reproduction, and distribution of the Work otherwise complies with
+              the conditions stated in this License.
+        
+           5. Submission of Contributions. Unless You explicitly state otherwise,
+              any Contribution intentionally submitted for inclusion in the Work
+              by You to the Licensor shall be under the terms and conditions of
+              this License, without any additional terms or conditions.
+              Notwithstanding the above, nothing herein shall supersede or modify
+              the terms of any separate license agreement you may have executed
+              with Licensor regarding such Contributions.
+        
+           6. Trademarks. This License does not grant permission to use the trade
+              names, trademarks, service marks, or product names of the Licensor,
+              except as required for reasonable and customary use in describing the
+              origin of the Work and reproducing the content of the NOTICE file.
+        
+           7. Disclaimer of Warranty. Unless required by applicable law or
+              agreed to in writing, Licensor provides the Work (and each
+              Contributor provides its Contributions) on an "AS IS" BASIS,
+              WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+              implied, including, without limitation, any warranties or conditions
+              of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+              PARTICULAR PURPOSE. You are solely responsible for determining the
+              appropriateness of using or redistributing the Work and assume any
+              risks associated with Your exercise of permissions under this License.
+        
+           8. Limitation of Liability. In no event and under no legal theory,
+              whether in tort (including negligence), contract, or otherwise,
+              unless required by applicable law (such as deliberate and grossly
+              negligent acts) or agreed to in writing, shall any Contributor be
+              liable to You for damages, including any direct, indirect, special,
+              incidental, or consequential damages of any character arising as a
+              result of this License or out of the use or inability to use the
+              Work (including but not limited to damages for loss of goodwill,
+              work stoppage, computer failure or malfunction, or any and all
+              other commercial damages or losses), even if such Contributor
+              has been advised of the possibility of such damages.
+        
+           9. Accepting Warranty or Additional Liability. While redistributing
+              the Work or Derivative Works thereof, You may choose to offer,
+              and charge a fee for, acceptance of support, warranty, indemnity,
+              or other liability obligations and/or rights consistent with this
+              License. However, in accepting such obligations, You may act only
+              on Your own behalf and on Your sole responsibility, not on behalf
+              of any other Contributor, and only if You agree to indemnify,
+              defend, and hold each Contributor harmless for any liability
+              incurred by, or claims asserted against, such Contributor by reason
+              of your accepting any such warranty or additional liability.
+        
+           END OF TERMS AND CONDITIONS
+        
+           APPENDIX: How to apply the Apache License to your work.
+        
+              To apply the Apache License to your work, attach the following
+              boilerplate notice, with the fields enclosed by brackets "[]"
+              replaced with your own identifying information. (Don't include
+              the brackets!)  The text should be enclosed in the appropriate
+              comment syntax for the file format. We also recommend that a
+              file or class name and description of purpose be included on the
+              same "printed page" as the copyright notice for easier
+              identification within third-party archives.
+        
+           Copyright 2024 테디노트(TeddyNote) teddylee777@gmail.com
+        
+           Licensed under the Apache License, Version 2.0 (the "License");
+           you may not use this file except in compliance with the License.
+           You may obtain a copy of the License at
+        
+               http://www.apache.org/licenses/LICENSE-2.0
+        
+           Unless required by applicable law or agreed to in writing, software
+           distributed under the License is distributed on an "AS IS" BASIS,
+           WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+           See the License for the specific language governing permissions and
+           limitations under the License.
+License-File: LICENSE
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.10
+Requires-Dist: anthropic>=0.64.0
+Requires-Dist: deepl>=1.22.0
+Requires-Dist: feedparser>=6.0.11
+Requires-Dist: kiwipiepy>=0.21.0
+Requires-Dist: konlpy>=0.6.0
+Requires-Dist: langchain-openai>=0.3.30
+Requires-Dist: langchain>=0.3.27
+Requires-Dist: langgraph>=0.6.5
+Requires-Dist: olefile>=0.47
+Requires-Dist: openai>=1.99.9
+Requires-Dist: pandas>=2.3.1
+Requires-Dist: pdf2image>=1.17.0
+Requires-Dist: pinecone-client>=6.0.0
+Requires-Dist: pinecone-text>=0.11.0
+Requires-Dist: python-dotenv>=1.1.1
+Requires-Dist: rank-bm25>=0.2.2
+Requires-Dist: tavily-python>=0.7.10
+Requires-Dist: twine>=6.1.0
+Description-Content-Type: text/markdown
+
+# langchain-teddynote
+
+랭체인 한국어 튜토리얼에 사용되는 다양한 유틸 파이썬 패키지.
+
+LangChain 을 사용하면서 불편한 기능이나, 추가적인 기능을 제공합니다.
+
+- [다운로드 통계](https://pypistats.org/packages/langchain-teddynote)
+
+## 설치
+
+```bash
+pip install langchain-teddynote
+```
+
+## 사용법
+
+### 스트리밍 출력
+
+스트리밍 출력을 위한 `stream_response` 함수를 제공합니다.
+
+```python
+from langchain_teddynote.messages import stream_response
+from langchain_openai import ChatOpenAI
+
+# 객체 생성
+llm = ChatOpenAI(
+    temperature=0.1,  # 창의성 (0.0 ~ 2.0)
+    model_name="gpt-4o",  # 모델명
+)
+answer = llm.stream("대한민국의 아름다운 관장지 10곳과 주소를 알려주세요!")
+
+# 스트리밍 출력만 하는 경우
+stream_response(answer)
+
+# 출력된 답변을 반환 값으로 받는 경우
+# final_answer = stream_response(answer, return_output=True)
+```
+### LangSmith 추적
+
+```python
+# LangSmith 추적을 설정합니다. https://smith.langchain.com
+# 환경변수 설정은 되어 있다고 가정합니다.
+from langchain_teddynote import logging
+
+# 프로젝트 이름을 입력합니다.
+logging.langsmith("프로젝트명 기입")
+```
+출력
+```
+LangSmith 추적을 시작합니다.
+[프로젝트명]
+(기입한 프로젝트명)
+```
+## 멀티모달 모델(이미지 입력)
+
+```python
+from langchain_teddynote.models import MultiModal
+from langchain_teddynote.messages import stream_response
+
+# 객체 생성
+llm = ChatOpenAI(
+    temperature=0.1,  # 창의성 (0.0 ~ 2.0)
+    model_name="gpt-4o",  # 모델명
+)
+
+# 멀티모달 객체 생성
+system_prompt = """당신은 표(재무제표) 를 해석하는 금융 AI 어시스턴트 입니다. 
+당신의 임무는 주어진 테이블 형식의 재무제표를 바탕으로 흥미로운 사실을 정리하여 친절하게 답변하는 것입니다."""
+
+user_prompt = """당신에게 주어진 표는 회사의 재무제표 입니다. 흥미로운 사실을 정리하여 답변하세요."""
+
+# 멀티모달 객체 생성
+multimodal_llm = MultiModal(
+    llm, system_prompt=system_prompt, user_prompt=user_prompt
+)
+
+# 샘플 이미지 주소(웹사이트로 부터 바로 인식)
+IMAGE_URL = "https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202212/080345-661/kwon-01.png"
+
+# 로컬 PC 에 저장되어 있는 이미지의 경로 입력
+# IMAGE_URL = "./images/sample-image.png"
+
+# 이미지 파일로 부터 질의
+answer = multimodal_llm.stream(IMAGE_URL)
+# 스트리밍 방식으로 각 토큰을 출력합니다. (실시간 출력)
+stream_response(answer)
+```
+
+## DeepL 번역기
+
+```python
+from langchain_teddynote.translate import Translator
+
+# api키 설정
+deepl_api_key = os.getenv("DEEPL_API_KEY")
+
+# 번역 객체 생성(source_lang, target_lang)
+translator = Translator(deepl_api_key, "EN", "KO")
+
+# 번역 실행
+translated_text = translator("hello, nice to meet you")
+print(translated_text)
+```
+
+## Kiwi 형태소 분석기
+
+```python
+from langchain_teddynote.community.kiwi_tokenizer import KiwiTokenizer
+
+# 토크나이저 선언
+kiwi_tokenizer = KiwiTokenizer()
+
+sent1 = "안녕하세요. 반갑습니다. 내 이름은 테디입니다."
+sent2 = "안녕하세용 반갑습니다~^^ 내 이름은 테디입니다!!"
+
+# 토큰화
+print(kiwi_tokenizer.tokenize(sent1))
+print(kiwi_tokenizer.tokenize(sent2))
+```
+
+## Synapsoft DocuAnalyzer
+
+```python
+from langchain_teddynote.document_parser import SynapsoftDocuAnalyzer
+
+api = SynapsoftDocuAnalyzer(api_key="API_KEY 를 입력해 주세요")
+
+# markdown 형식으로 변환(반환 형식: List[str])
+markdown = api.convert_to_markdown("sample.pdf")
+
+# xml 형식으로 변환(반환 형식: List[str])
+xml = api.convert_to_xml("sample.pdf")
+
+# json 형식으로 변환(반환 형식: List[str])
+json = api.convert_to_json("sample.pdf")
+```
+
+
+## OpenAI Assistant V2 
+
+```python
+from langchain_teddynote.models import OpenAIAssistant
+
+
+# RAG 시스템 프롬프트 입력
+_DEFAULT_RAG_INSTRUCTIONS = """You are an assistant for question-answering tasks. 
+Use the following pieces of retrieved context to answer the question. 
+If you don't know the answer, just say that you don't know. 
+Answer in Korean."""
+
+
+# 설정(configs)
+configs = {
+    "OPENAI_API_KEY": openai_api_key,  # OpenAI API 키
+    "instructions": _DEFAULT_RAG_INSTRUCTIONS,  # RAG 시스템 프롬프트
+    "PROJECT_NAME": "PDF-RAG-TEST",  # 프로젝트 이름(자유롭게 설정)
+    "model_name": "gpt-4o",  # 사용할 OpenAI 모델 이름(gpt-4o, gpt-4o-mini, ...)
+    "chunk_size": 1000,  # 청크 크기
+    "chunk_overlap": 100,  # 청크 중복 크기
+}
+
+
+# 인스턴스 생성
+assistant = OpenAIAssistant(configs)
+
+# 업로드할 파일 경로
+data = "파일이름.pdf"
+
+# 파일 업로드 후 file_id 는 잘 보관해 두세요. (대시보드에서 나중에 확인 가능)
+file_id = assistant.upload_file(data)
+
+# 업로드한 파일의 ID 리스트 생성
+file_ids = [file_id]
+
+# 새로운 어시스턴트 생성 및 ID 받기
+assistant_id, vector_id = assistant.create_new_assistant(file_ids)
+
+# 어시스턴트 설정
+assistant.setup_assistant(assistant_id)
+
+# 벡터 스토어 설정
+assistant.setup_vectorstore(vector_id)
+```
+
+스트리밍 출력
+
+```python
+for token in assistant.stream("삼성전자가 개발한 생성형 AI의 이름은?"):
+    print(token, end="", flush=True)
+```
+혹은
+
+```python
+from langchain_teddynote.messages import stream_response
+
+stream_response(assistant.stream("이전 답변을 영어로"))
+```
+
+일반 출력
+
+```python
+# 질문
+print(assistant.invoke("삼성전자가 개발한 생성형 AI의 이름은?"))
+```
+
+대화 목록을 조회
+
+```python
+# 대화 목록 조회
+assistant.list_chat_history()
+```
+
+대화 초기화
+
+```python
+# 대화 초기화
+assistant.clear_chat_history()
+```
+
+## 튜토리얼
+
+- [Pinecone 커스텀 구현(한글 형태소 분석기)](https://wikidocs.net/252407)
+- [한글 형태소 분석기(Kiwi)가 적용된 BM25 Retriever](https://wikidocs.net/251980)
+
