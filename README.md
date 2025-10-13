@@ -1,50 +1,17 @@
-# AI Startup Investment Evaluation Agent
-본 프로젝트는 인공지능 스타트업에 대한 투자 가능성을 자동으로 평가하는 에이전트를 설계하고 구현한 실습 프로젝트입니다.
-#### Class 1, Team 1
-##### Member:
-김재민, 김창규, 신민석, 이시언, 정광진
+# Agentic RAG Startup Evaluator — 보고서 생성 에이전트  
+담당자: **김창규, 이시언**
 
-## Overview
+## 역할 (6번: 보고서 생성 에이전트)
+- 헬스케어/의료 AI 스타트업의 투자 적합성을 평가
+- 여러 평가 에이전트들의 결과(`tech_summary`, `market_eval`, `competitor_eval`, `investment_decision`)를 통합하여 **최종 보고서(Report)** 를 자동 생성
+- LangGraph의 `assemble_sections → render_pdf` 두 노드로 구성
+**입력: 분석 데이터(state)** → **출력: PDF 보고서 파일**의 흐름으로 동작
+---
+##  AI 스타트업 투자 평가 보고서 요약
+1️⃣ **Executive Summary** – 투자 판단(YES/NO), 핵심 강점·리스크 요약  
+2️⃣ **기술 요약** – 스타트업의 핵심 기술력과 차별점 기술  
+3️⃣ **시장성 평가** – Scorecard Method 6항목 기반 점수 요약  
+4️⃣ **경쟁사 비교** – 기술 우위·평균 평점·핵심 논리 요약  
+5️⃣ **리스크 분석** – 주요 리스크와 대응 전략 표로 제시
 
-- Objective : AI 스타트업의 기술력, 시장성, 리스크 등을 기준으로 투자 적합성 분석
-- Method : AI Agent + Agentic RAG 
-- Tools : 도구A, 도구B, 도구C
 
-## Features
-
-- PDF 자료 기반 정보 추출 (예: IR 자료, 기사 등)
-- 투자 기준별 판단 분류 (시장성, 팀, 기술력 등)
-- 종합 투자 요약 출력 (예: 투자 유망 / 보류 / 회피)
-
-## Tech Stack 
-
-| Category   | Details                      |
-|------------|------------------------------|
-| Framework  | LangGraph, LangChain, Python |
-| LLM        | GPT-4o-mini via OpenAI API   |
-| Retrieval  | FAISS, Chroma                |
-
-## Agents
- 
-- Agent A: Assesses technical competitiveness
-- Agent B: Evaluates market opportunity and team capability
-
-## Architecture
-(그래프 이미지)
-
-## Directory Structure
-├── data/                  # 스타트업 PDF 문서
-├── agents/                # 평가 기준별 Agent 모듈
-├── prompts/               # 프롬프트 템플릿
-├── outputs/               # 평가 결과 저장
-├── app.py                 # 실행 스크립트
-└── README.md
-
-## Contributors 
-- 김철수 : Prompt Engineering, Agent Design 
-- 최영희 : PDF Parsing, Retrieval Agent 
-- 김재민: 
-- 김창규: 
-- 신민석: 
-- 이시언: 
-- 정광진: 
