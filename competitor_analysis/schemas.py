@@ -25,7 +25,6 @@ class CompetitorAgentState(TypedDict):
     messages: Annotated[Sequence[BaseMessage], add_messages]
     competitor_list: List[Dict]  # [{name, url, description}, ...]
     competitor_details: List[Dict]  # 상세 정보
-    rag_context: str  # RAG에서 검색한 산업 컨텍스트
     competitor_analysis: dict  # 비교 분석 결과
 
     # 출력 (투자 판단 에이전트)
@@ -33,7 +32,6 @@ class CompetitorAgentState(TypedDict):
     competitive_advantages: List[str]
     competitive_disadvantages: List[str]
     market_position: str  # 호환성을 위해 유지
-    final_output: Dict[str, object]
     final_output: Dict[str, Any]
 
 

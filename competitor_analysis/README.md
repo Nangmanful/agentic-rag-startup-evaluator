@@ -10,7 +10,6 @@ competitor_analysis/
 │   └── vector_store/              # FAISS 인덱스 자동 생성 위치
 ├── schemas.py                     # Pydantic 스키마 정의
 ├── prompts.py                     # 프롬프트 템플릿
-├── rag_builder.py                 # RAG 파이프라인 구축
 ├── competitor_analysis_agent.py   # 메인 에이전트 로직
 ├── test_agent.py                  # 테스트 스크립트
 └── README.md                      # 이 파일
@@ -29,16 +28,7 @@ OPENAI_API_KEY=your_openai_api_key
 TAVILY_API_KEY=your_tavily_api_key
 ```
 
-### 2. RAG 문서 준비 (선택사항)
-
-`competitor_analysis/data/` 디렉토리에 산업 리포트 PDF 파일을 추가하세요:
-
-- 최대 4개 문서
-- 각 문서 50페이지 이내
-
-**참고**: PDF가 없어도 웹 검색만으로 동작합니다.
-
-### 3. 테스트 실행
+### 2. 테스트 실행
 
 ```bash
 cd competitor_analysis
@@ -61,14 +51,11 @@ python test_agent.py
 - `PARSE_ANALYSIS_PROMPT`: 분석 결과 구조화
 - `RAG_QUERY_PROMPT`: RAG 검색 쿼리 생성
 
-### 3. `rag_builder.py`
-RAG 파이프라인
-
-### 4. `competitor_analysis_agent.py`
+### 3. `competitor_analysis_agent.py`
 메인 에이전트 로직:
 - **노드**: `agent`, `retrieve`, `grade_competitor_info`, `search_more`, `retrieve_rag_context`, `analyze`, `parse_analysis`, `format_output`
 
-### 5. `test_agent.py`
+### 4. `test_agent.py`
 테스트 스크립트 (노드 이름 업데이트)
 
 ## 🔄 워크플로우
@@ -87,8 +74,6 @@ graph TD
     H --> I[format_output]
     I --> END
 ```
-
-**주요 변경**: `evaluate` (점수 평가) → `parse_analysis` (구조화)
 
 ## 📊 분석 체계
 
@@ -149,10 +134,9 @@ graph TD
 ## 🛠️ 주요 기능
 
 1. **웹 검색 기반 경쟁사 발굴** - Tavily API로 실시간 정보 수집
-2. **RAG 기반 산업 컨텍스트 참조** - PDF 리포트에서 평가 기준 추출
-3. **조건부 정보 수집** - 정보 충분성 평가 후 추가 검색
-4. **구조화된 6차원 분석** - 가중치 기반 종합 비교 분석
-5. **Market Positioning 평가** - 5단계 포지션 평가
+2. **조건부 정보 수집** - 정보 충분성 평가 후 추가 검색
+3. **구조화된 6차원 분석** - 가중치 기반 종합 비교 분석
+4. **Market Positioning 평가** - 5단계 포지션 평가
 
 ## 💡 사용 시나리오
 
@@ -176,4 +160,3 @@ disadvantages = result["competitive_disadvantages"]
 ## ⚠️ 주의사항
 
 1. **API 키 필수**: `TAVILY_API_KEY`, `OPENAI_API_KEY`
-2. **RAG 문서 선택사항**: PDF가 없어도 작동

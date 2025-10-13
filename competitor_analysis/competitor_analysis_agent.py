@@ -88,8 +88,6 @@ from prompts import (
     COMPETITOR_ANALYSIS_PROMPT,
     PARSE_ANALYSIS_PROMPT
 )
-from rag_builder import CompetitorRAGBuilder, initialize_rag
-
 # -----------------------------
 # 환경 변수 설정
 # -----------------------------
@@ -165,23 +163,6 @@ def fetch_competitor_details(competitor_name: str, focus_area: str = "technology
 
 
 tools = [search_competitors, fetch_competitor_details]
-
-
-# -----------------------------
-# RAG 인스턴스 (글로벌)
-# -----------------------------
-rag_builder: Optional[CompetitorRAGBuilder] = None
-
-
-def get_rag_builder() -> CompetitorRAGBuilder:
-    """RAG Builder 싱글톤 인스턴스 반환"""
-    global rag_builder
-    if rag_builder is None:
-        rag_builder = initialize_rag(
-            data_dir=None,
-            force_rebuild=False
-        )
-    return rag_builder
 
 
 # -----------------------------
@@ -261,36 +242,13 @@ def search_more(state):
     return {"messages": [response]}
 
 
-def retrieve_rag_context(state):
-    """RAG에서 산업 컨텍스트 검색 (신규 노드)"""
-    print("==== [RETRIEVING INDUSTRY CONTEXT FROM RAG] ====")
-    startup_info = state.get("startup_info", {})
-
-    startup_name = startup_info.get("name", "Unknown")
-    category = startup_info.get("category", "Technology")
-
-    # RAG 검색 쿼리 생성
-    query = (
-        f"Competitive analysis framework for {category} startups. "
-        f"Key evaluation criteria and industry benchmarks for {startup_name}."
-    )
-
-    # RAG에서 컨텍스트 검색
-    rag = get_rag_builder()
-    context = rag.retrieve_context(query, k=3)
-
-    print(f"📚 RAG Context Retrieved: {len(context)} characters")
-
-    return {"rag_context": context}
-
-
 def analyze(state):
     """경쟁사 비교 분석"""
     print("==== [ANALYZING COMPETITORS] ====")
     messages = state["messages"]
     startup_info = state.get("startup_info", {})
     tech_summary = state.get("tech_summary", "")
-    rag_context = state.get("rag_context", "No industry context available.")
+    rag_context = "Industry context not provided."
 
     # 경쟁사 정보 추출
     competitor_info = "\n\n".join([
@@ -458,12 +416,11 @@ def build_graph():
 
     # 노드 추가
     workflow.add_node("agent", agent)
-    retrieve = create_tool_node(tools)  # ToolNode 대신 create_tool_node 사용
+    retrieve = create_tool_node(tools)
     workflow.add_node("retrieve", retrieve)
-    workflow.add_node("retrieve_rag_context", retrieve_rag_context)  # RAG 노드
     workflow.add_node("search_more", search_more)
     workflow.add_node("analyze", analyze)
-    workflow.add_node("parse_analysis", parse_analysis)  # evaluate 대신 parse_analysis
+    workflow.add_node("parse_analysis", parse_analysis)
     workflow.add_node("format_output", format_output)
 
     # 엣지 정의
@@ -480,14 +437,11 @@ def build_graph():
     workflow.add_conditional_edges(
         "retrieve",
         grade_competitor_info,
-        {"analyze": "retrieve_rag_context", "search_more": "search_more"}  # analyze 전에 RAG 검색
+        {"analyze": "analyze", "search_more": "search_more"}
     )
 
     # search_more 후 다시 agent로
     workflow.add_edge("search_more", "agent")
-
-    # RAG 검색 후 analyze로
-    workflow.add_edge("retrieve_rag_context", "analyze")
 
     # analyze 후 parse_analysis
     workflow.add_edge("analyze", "parse_analysis")
@@ -547,12 +501,12 @@ def run_competitor_analysis(
         "startup_info": startup_info,
         "competitor_list": [],
         "competitor_details": [],
-        "rag_context": "",
         "competitor_analysis": {},
         "competitive_positioning": "",
         "competitive_advantages": [],
         "competitive_disadvantages": [],
-        "market_position": ""
+        "market_position": "",
+        "final_output": {}
     }
 
     # 그래프 실행

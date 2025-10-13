@@ -12,11 +12,6 @@ from .schemas import (
     EVALUATION_DIMENSIONS
 )
 
-from .rag_builder import (
-    CompetitorRAGBuilder,
-    initialize_rag
-)
-
 from .competitor_analysis_agent import (
     build_graph,
     run_competitor_analysis
@@ -32,9 +27,6 @@ __all__ = [
     "CompetitorAnalysisOutput",
     "MARKET_POSITION_DESCRIPTIONS",
     "EVALUATION_DIMENSIONS",
-    # RAG
-    "CompetitorRAGBuilder",
-    "initialize_rag",
     # Agent
     "build_graph",
     "run_competitor_analysis",
