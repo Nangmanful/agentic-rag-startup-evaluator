@@ -1,3 +1,15 @@
+cat > agents/02_tech_summary_agent.py <<'PYCODE'
+# Agentic RAG Startup Evaluator — 기술 요약 에이전트 (의료 AI)
+
+담당자: **신민석**
+
+## 역할 (2번: 기술 요약 에이전트)
+- 헬스케어/의료 AI 스타트업의 **기술 자료(PDF)**를 수집하여 **RAG 기반 요약/정리**
+- **템플릿(에이전트 → 툴 호출(retriever) → 관련성 평가 → 재작성 → 생성)** 흐름을 **그대로 유지**
+- 최종 서비스 병합 시 충돌 최소화를 위해 **함수/노드/이름/흐름 동일성** 준수
+
+## 주요 파일
+
 # Agentic RAG Startup Evaluator — 경쟁사 비교 에이전트
 담당자: **정광진**
 
