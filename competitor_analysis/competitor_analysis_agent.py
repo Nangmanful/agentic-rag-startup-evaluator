@@ -6,6 +6,7 @@
 # ------------------------------------------------------------
 
 import os
+import re
 from typing import Literal, Optional
 from dotenv import load_dotenv
 
@@ -310,7 +311,10 @@ def analyze(state):
 
     return {
         "messages": [AIMessage(content=response)],
-        "competitor_analysis": {"analysis": response}
+        "competitor_analysis": {
+            "analysis": response,
+            "target_startup": startup_info.get("name", "Target Startup")
+        }
     }
 
 
@@ -354,15 +358,56 @@ def format_output(state):
     competitor_analysis = state.get("competitor_analysis", {})
     analysis_text = competitor_analysis.get("analysis", "")
 
-    # 경쟁사 이름 추출 (간단한 휴리스틱)
+    startup_name = competitor_analysis.get("target_startup", state.get("company_name", ""))
+
+    def extract_competitors(text: str) -> list:
+        patterns = [
+            r"[Cc]ompetitors?\s+(?:like|such as|include|including)\s+([^.;]+)",
+            r"[Vv]ersus\s+([^.;]+)",
+            r"[Vv]s\.?\s+([^.;]+)",
+            r"[Cc]ompared to\s+([^.;]+)",
+        ]
+        names = set()
+        for pattern in patterns:
+            for match in re.findall(pattern, text):
+                parts = re.split(r",| and ", match)
+                for raw_name in parts:
+                    cleaned = raw_name.strip().strip(".:;")
+                    if not cleaned:
+                        continue
+                    name_match = re.match(
+                        r"([A-Z][A-Za-z0-9\.\-&]*(?:\s+[A-Z][A-Za-z0-9\.\-&]*)*)",
+                        cleaned
+                    )
+                    if not name_match:
+                        continue
+                    candidate = name_match.group(1).strip()
+                    if startup_name and candidate.lower() == startup_name.lower():
+                        continue
+                    if len(candidate) < 2:
+                        continue
+                    names.add(candidate)
+        return sorted(names)
+
     competitors_found = []
-    for msg in messages:
-        if hasattr(msg, 'content') and isinstance(msg.content, str):
-            content = msg.content
-            # 실제 구현에서는 더 정교한 NER 또는 정규표현식 사용
-            if "competitor" in content.lower() or "vs" in content.lower():
-                # 임시로 문자열에서 회사명 추출 (간소화)
-                competitors_found.append("Competitors from search")
+    for source_text in [
+        analysis_text,
+        " ".join(state.get("competitive_advantages", [])),
+        " ".join(state.get("competitive_disadvantages", [])),
+    ]:
+        competitors_found.extend(extract_competitors(source_text))
+
+    if competitors_found:
+        unique_competitors = []
+        seen = set()
+        for name in competitors_found:
+            norm = name.lower()
+            if norm not in seen:
+                seen.add(norm)
+                unique_competitors.append(name)
+        competitors_found = unique_competitors[:5]
+    else:
+        competitors_found = ["No specific competitors identified"]
 
     # 6개 차원 분석 추출 (분석 텍스트에서 각 차원 섹션 추출)
     dimension_analysis = {}
@@ -376,16 +421,14 @@ def format_output(state):
     ]
 
     for keyword in dimension_keywords:
-        # 간단한 추출 (실제로는 더 정교한 파싱 필요)
-        if keyword in analysis_text:
-            start_idx = analysis_text.find(keyword)
-            # 다음 차원 또는 섹션까지의 텍스트 추출
-            next_section = analysis_text.find("**", start_idx + len(keyword))
-            if next_section != -1:
-                dimension_text = analysis_text[start_idx:next_section].strip()
-            else:
-                dimension_text = analysis_text[start_idx:start_idx+300].strip()
-            dimension_analysis[keyword] = dimension_text
+        pattern = re.compile(
+            rf"\*\*{re.escape(keyword)}.*?\*\*\s*(.*?)(?=\n\*\*|\Z)",
+            re.DOTALL
+        )
+        match = pattern.search(analysis_text)
+        if match:
+            dimension_text = match.group(1).strip()
+            dimension_analysis[keyword] = dimension_text or "Not analyzed"
         else:
             dimension_analysis[keyword] = "Not analyzed"
 

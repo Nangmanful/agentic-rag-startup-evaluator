@@ -3,7 +3,7 @@
 # Pydantic 스키마 정의 - 입출력 인터페이스 및 평가 스키마
 # ------------------------------------------------------------
 
-from typing import Annotated, List, Dict, Sequence
+from typing import Annotated, Any, List, Dict, Sequence
 from typing_extensions import TypedDict
 from pydantic import BaseModel, Field
 from langchain_core.messages import BaseMessage
@@ -33,6 +33,8 @@ class CompetitorAgentState(TypedDict):
     competitive_advantages: List[str]
     competitive_disadvantages: List[str]
     market_position: str  # 호환성을 위해 유지
+    final_output: Dict[str, object]
+    final_output: Dict[str, Any]
 
 
 # -----------------------------

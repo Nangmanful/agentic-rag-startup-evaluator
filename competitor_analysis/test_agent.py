@@ -4,6 +4,7 @@
 # ------------------------------------------------------------
 
 import os
+import json
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -16,10 +17,6 @@ from competitor_analysis_agent import build_graph, run_competitor_analysis
 
 def test_basic_flow():
     """기본 워크플로우 테스트"""
-    print("\n" + "="*80)
-    print("🧪 테스트 1: 기본 워크플로우 (Qure.ai)")
-    print("="*80 + "\n")
-
     # 예시 데이터
     startup_info = {
         "name": "Qure.ai",
@@ -83,22 +80,29 @@ def test_basic_flow():
     print("-"*80 + "\n")
 
     # 그래프 실행 (스트리밍)
-    stream_graph(
-        graph,
-        inputs,
-        config,
-        ["agent", "retrieve_rag_context", "search_more", "analyze", "parse_analysis", "format_output"]
-    )
+    # stream_graph(
+    #     graph,
+    #     inputs,
+    #     config,
+    #     ["agent", "retrieve_rag_context", "search_more", "analyze", "parse_analysis", "format_output"]
+    # )
     
     # run_comepetitor_analysis 함수 사용
-    # result = run_competitor_analysis(
-    #     company_name=startup_info["name"],
-    #     tech_summary=tech_summary,
-    #     startup_info=startup_info
-    # )
-
+    result = run_competitor_analysis(
+        company_name=startup_info["name"],
+        tech_summary=tech_summary,
+        startup_info=startup_info,
+        config=config,
+    )
+    
+    final_output = result["final_output"]
+    
     print("\n" + "="*80)
-    print("✅ 테스트 1 완료")
+    if final_output:
+          print("🧩 CompetitorAnalysisOutput:")
+          print(json.dumps(final_output, ensure_ascii=False, indent=2))
+    else:
+        print("⚠️ final_output이 생성되지 않았습니다.")
     print("="*80 + "\n")
 
 def main():
@@ -113,7 +117,7 @@ def main():
         print("="*80 + "\n")
 
     print("\n" + "="*80)
-    print("🔬 경쟁사 비교 에이전트 통합 테스트")
+    print("🔬 경쟁사 비교 에이전트 통합 테스트 (Qure.ai)")
     print("="*80)
     
     test_basic_flow()
@@ -121,7 +125,6 @@ def main():
     print("\n" + "="*80)
     print("🎉 테스트 완료!")
     print("="*80 + "\n")
-
 
 if __name__ == "__main__":
     main()
