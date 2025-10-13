@@ -56,6 +56,7 @@ graph TD
 
 
 ## Directory Structure
+```
 ├── data/                  # 스타트업 PDF 문서
 ├── agents/                # 평가 기준별 Agent 모듈
 ├── prompts/               # 프롬프트 템플릿
@@ -63,6 +64,7 @@ graph TD
 ├── app.py                 # 실행 스크립트
 ├── test.py                # Agent 테스트 스크립트
 └── README.md
+```
 
 ## Contributors 
 - 김재민: 시장성 평가 에이전트 구현
